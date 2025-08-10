@@ -1,0 +1,363 @@
+/* BaseFlow-specific styles to ensure light theme components work correctly */
+
+/* Force light theme for BaseFlow components */
+.baseflow-light {
+  --tw-bg-opacity: 1;
+  background-color: rgb(249 250 251 / var(--tw-bg-opacity)); /* gray-50 */
+  color: rgb(17 24 39 / 1); /* gray-900 */
+}
+
+.baseflow-light * {
+  color: inherit;
+}
+
+/* Allow header to use theme colors - removed global overrides that prevented dark theme */
+
+/* Override any DaisyUI dark theme styles for BaseFlow dashboard */
+.baseflow-dashboard {
+  background: #f9fafb !important; /* gray-50 */
+  color: #111827 !important; /* gray-900 */
+}
+
+.baseflow-dashboard .bg-white {
+  background-color: #ffffff !important;
+}
+
+.baseflow-dashboard .bg-gray-50 {
+  background-color: #f9fafb !important;
+}
+
+.baseflow-dashboard .bg-gray-100 {
+  background-color: #f3f4f6 !important;
+}
+
+.baseflow-dashboard .bg-gray-200 {
+  background-color: #e5e7eb !important;
+}
+
+.baseflow-dashboard .text-gray-600 {
+  color: #4b5563 !important;
+}
+
+.baseflow-dashboard .text-gray-700 {
+  color: #374151 !important;
+}
+
+.baseflow-dashboard .text-gray-800 {
+  color: #1f2937 !important;
+}
+
+.baseflow-dashboard .text-gray-900 {
+  color: #111827 !important;
+}
+
+.baseflow-dashboard .border-gray-200 {
+  border-color: #e5e7eb !important;
+}
+
+.baseflow-dashboard .border-gray-300 {
+  border-color: #d1d5db !important;
+}
+
+/* Ensure proper contrast for interactive elements */
+.baseflow-dashboard .hover\:bg-gray-50:hover {
+  background-color: #f9fafb !important;
+}
+
+.baseflow-dashboard .hover\:bg-blue-700:hover {
+  background-color: #1d4ed8 !important;
+}
+
+.baseflow-dashboard .bg-blue-600 {
+  background-color: #2563eb !important;
+}
+
+.baseflow-dashboard .text-blue-600 {
+  color: #2563eb !important;
+}
+
+.baseflow-dashboard .bg-green-100 {
+  background-color: #dcfce7 !important;
+}
+
+.baseflow-dashboard .text-green-800 {
+  color: #166534 !important;
+}
+
+.baseflow-dashboard .bg-blue-50 {
+  background-color: #eff6ff !important;
+}
+
+.baseflow-dashboard .bg-blue-100 {
+  background-color: #dbeafe !important;
+}
+
+.baseflow-dashboard .text-blue-700 {
+  color: #1d4ed8 !important;
+}
+
+/* Fix sidebar dark background in light theme */
+.baseflow-dashboard .bg-gray-800 {
+  background-color: #1f2937 !important;
+}
+
+.baseflow-dashboard .text-white {
+  color: #ffffff !important;
+}
+
+/* Fix input and form element styling for BaseFlow light theme */
+.baseflow-dashboard input[type="text"]:not(.bg-base-100):not(.bg-gray-700),
+.baseflow-dashboard input[type="number"]:not(.bg-base-100):not(.bg-gray-700), 
+.baseflow-dashboard input[type="email"]:not(.bg-base-100):not(.bg-gray-700),
+.baseflow-dashboard input[type="password"]:not(.bg-base-100):not(.bg-gray-700),
+.baseflow-dashboard input[type="search"]:not(.bg-base-100):not(.bg-gray-700),
+.baseflow-dashboard textarea:not(.bg-base-100):not(.bg-gray-700),
+.baseflow-dashboard select:not(.bg-base-100):not(.bg-gray-700) {
+  background-color: #ffffff !important;
+  border: 1px solid #d1d5db !important;
+  color: #111827 !important;
+  border-radius: 0.375rem !important;
+}
+
+.baseflow-dashboard input[type="text"]:focus:not(.bg-base-100):not(.bg-gray-700),
+.baseflow-dashboard input[type="number"]:focus:not(.bg-base-100):not(.bg-gray-700), 
+.baseflow-dashboard input[type="email"]:focus:not(.bg-base-100):not(.bg-gray-700),
+.baseflow-dashboard input[type="password"]:focus:not(.bg-base-100):not(.bg-gray-700),
+.baseflow-dashboard input[type="search"]:focus:not(.bg-base-100):not(.bg-gray-700),
+.baseflow-dashboard textarea:focus:not(.bg-base-100):not(.bg-gray-700),
+.baseflow-dashboard select:focus:not(.bg-base-100):not(.bg-gray-700) {
+  background-color: #ffffff !important;
+  border-color: #2563eb !important;
+  outline: none !important;
+  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.1) !important;
+}
+
+.baseflow-dashboard input::placeholder,
+.baseflow-dashboard textarea::placeholder {
+  color: #9ca3af !important;
+}
+
+/* Override any DaisyUI input styling in BaseFlow components */
+.baseflow-dashboard .input,
+.baseflow-dashboard .textarea,
+.baseflow-dashboard .select {
+  background-color: #ffffff !important;
+  border: 1px solid #d1d5db !important;
+  color: #111827 !important;
+}
+
+.baseflow-dashboard .input:focus,
+.baseflow-dashboard .textarea:focus,
+.baseflow-dashboard .select:focus {
+  background-color: #ffffff !important;
+  border-color: #2563eb !important;
+  outline: none !important;
+  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.1) !important;
+}
+
+/* Additional overrides for any inherited dark theme styles */
+.baseflow-dashboard input,
+.baseflow-dashboard textarea,
+.baseflow-dashboard select {
+  background: #ffffff !important;
+  background-color: #ffffff !important;
+  color: #111827 !important;
+  border: 1px solid #d1d5db !important;
+}
+
+.baseflow-dashboard input:focus,
+.baseflow-dashboard textarea:focus,
+.baseflow-dashboard select:focus {
+  background: #ffffff !important;
+  background-color: #ffffff !important;
+  border-color: #2563eb !important;
+}
+
+/* Force override any theme-specific backgrounds */
+.baseflow-dashboard [data-theme="baseflow"] input,
+.baseflow-dashboard [data-theme="baseflow"] textarea,
+.baseflow-dashboard [data-theme="baseflow"] select,
+.baseflow-dashboard [data-theme] input,
+.baseflow-dashboard [data-theme] textarea,
+.baseflow-dashboard [data-theme] select {
+  background-color: #ffffff !important;
+  color: #111827 !important;
+}
+
+/* Ensure buttons maintain proper BaseFlow styling */
+.baseflow-dashboard button {
+  font-weight: 500 !important;
+}
+
+.baseflow-dashboard .bg-blue-600 {
+  background-color: #2563eb !important;
+  color: #ffffff !important;
+}
+
+.baseflow-dashboard .bg-blue-600:hover {
+  background-color: #1d4ed8 !important;
+}
+
+.baseflow-dashboard .bg-green-600 {
+  background-color: #059669 !important;
+  color: #ffffff !important;
+}
+
+.baseflow-dashboard .bg-green-600:hover {
+  background-color: #047857 !important;
+}
+
+/* Fix any search inputs specifically */
+.baseflow-dashboard input[placeholder*="search" i],
+.baseflow-dashboard input[placeholder*="Search" i] {
+  background-color: #ffffff !important;
+  color: #111827 !important;
+  border: 1px solid #d1d5db !important;
+}
+
+/* Comprehensive input override - highest specificity */
+.baseflow-dashboard.baseflow-dashboard input,
+.baseflow-dashboard.baseflow-dashboard textarea,
+.baseflow-dashboard.baseflow-dashboard select {
+  background-color: #ffffff !important;
+  background: #ffffff !important;
+  color: #111827 !important;
+  border: 1px solid #d1d5db !important;
+  border-radius: 0.375rem !important;
+}
+
+.baseflow-dashboard.baseflow-dashboard input:focus,
+.baseflow-dashboard.baseflow-dashboard textarea:focus,
+.baseflow-dashboard.baseflow-dashboard select:focus {
+  background-color: #ffffff !important;
+  background: #ffffff !important;
+  border-color: #2563eb !important;
+  outline: none !important;
+  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.1) !important;
+}
+
+/* Override any DaisyUI theme variables for inputs */
+.baseflow-dashboard input,
+.baseflow-dashboard textarea {
+  --tw-bg-opacity: 1 !important;
+  --input-bg: #ffffff !important;
+  --input-color: #111827 !important;
+}
+
+/* Custom scrollbar styling for BaseFlow light theme */
+.baseflow-dashboard ::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+.baseflow-dashboard ::-webkit-scrollbar-track {
+  background: #f9fafb;
+  border-radius: 3px;
+}
+
+.baseflow-dashboard ::-webkit-scrollbar-thumb {
+  background: #d1d5db;
+  border-radius: 3px;
+}
+
+.baseflow-dashboard ::-webkit-scrollbar-thumb:hover {
+  background: #9ca3af;
+}
+
+/* Firefox scrollbar styling */
+.baseflow-dashboard * {
+  scrollbar-width: thin;
+  scrollbar-color: #d1d5db #f9fafb;
+}
+
+/* Specific scrollbar styling for chat areas and content sections */
+.baseflow-dashboard .overflow-y-auto,
+.baseflow-dashboard .overflow-auto {
+  scrollbar-width: thin;
+  scrollbar-color: #d1d5db #f9fafb;
+}
+
+.baseflow-dashboard .overflow-y-auto::-webkit-scrollbar,
+.baseflow-dashboard .overflow-auto::-webkit-scrollbar {
+  width: 6px;
+}
+
+.baseflow-dashboard .overflow-y-auto::-webkit-scrollbar-track,
+.baseflow-dashboard .overflow-auto::-webkit-scrollbar-track {
+  background: #f9fafb;
+  border-radius: 3px;
+}
+
+.baseflow-dashboard .overflow-y-auto::-webkit-scrollbar-thumb,
+.baseflow-dashboard .overflow-auto::-webkit-scrollbar-thumb {
+  background: #d1d5db;
+  border-radius: 3px;
+}
+
+.baseflow-dashboard .overflow-y-auto::-webkit-scrollbar-thumb:hover,
+.baseflow-dashboard .overflow-auto::-webkit-scrollbar-thumb:hover {
+  background: #9ca3af;
+}
+
+/* Also apply to main BaseFlow pages/sections */
+.baseflow-light ::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+.baseflow-light ::-webkit-scrollbar-track {
+  background: #f9fafb;
+  border-radius: 3px;
+}
+
+.baseflow-light ::-webkit-scrollbar-thumb {
+  background: #d1d5db;
+  border-radius: 3px;
+}
+
+.baseflow-light ::-webkit-scrollbar-thumb:hover {
+  background: #9ca3af;
+}
+
+.baseflow-light * {
+  scrollbar-width: thin;
+  scrollbar-color: #d1d5db #f9fafb;
+}
+
+/* Dark header styling - override only if needed */
+.baseflow-dashboard .bg-gray-800 {
+  background-color: #1f2937 !important;
+}
+
+.baseflow-dashboard .bg-gray-700 {
+  background-color: #374151 !important;
+}
+
+.baseflow-dashboard .border-gray-700 {
+  border-color: #374151 !important;
+}
+
+.baseflow-dashboard .border-gray-600 {
+  border-color: #4b5563 !important;
+}
+
+.baseflow-dashboard .text-white {
+  color: #ffffff !important;
+}
+
+.baseflow-dashboard .text-gray-300 {
+  color: #d1d5db !important;
+}
+
+.baseflow-dashboard .text-gray-400 {
+  color: #9ca3af !important;
+}
+
+.baseflow-dashboard .placeholder-gray-300::placeholder {
+  color: #d1d5db !important;
+}
+
+.baseflow-dashboard .hover\:bg-gray-700:hover {
+  background-color: #374151 !important;
+}
+

@@ -1,71 +1,415 @@
 "use client";
 
+import React, { useState } from 'react';
 import Link from "next/link";
 import type { NextPage } from "next";
-import { useAccount } from "wagmi";
-import { BugAntIcon, MagnifyingGlassIcon } from "@heroicons/react/24/outline";
-import { Logo } from "~~/components/Logo";
-import { Address } from "~~/components/scaffold-eth";
+import { motion } from 'framer-motion';
+import { Clock, MessageSquare, Receipt, Package2, Headphones, CheckCircle, ArrowRight, Plus, Minus, Shield, TrendingUp, Bug, Search } from 'lucide-react';
+import { Button } from "~~/components/baseflow-migrated/common/Button";
+import { FeatureCard } from "~~/components/baseflow-migrated/features/FeatureCard";
+import { ConnectButton } from '@rainbow-me/rainbowkit';
 
 const Home: NextPage = () => {
-  const { address: connectedAddress } = useAccount();
+  const [activeFaq, setActiveFaq] = useState<number | null>(null);
+  
+  const fadeIn = {
+    initial: {
+      opacity: 0,
+      y: 20
+    },
+    whileInView: {
+      opacity: 1,
+      y: 0
+    },
+    viewport: {
+      once: true
+    },
+    transition: {
+      duration: 0.5
+    }
+  };
+
+  const problems = [{
+    title: 'Manual Invoicing',
+    before: 'Hours spent creating and sending invoices',
+    after: 'Just tell AI what you sold - invoice sent instantly'
+  }, {
+    title: 'Inventory Tracking',
+    before: 'Constantly checking spreadsheets and stock levels',
+    after: 'Real-time updates and automatic reordering'
+  }, {
+    title: 'Customer Support',
+    before: 'Answering the same questions repeatedly',
+    after: 'AI handles common inquiries 24/7'
+  }, {
+    title: 'Payment Processing',
+    before: 'Waiting days for payments to clear',
+    after: 'Instant payments with automatic bank deposits'
+  }];
+
+  const features = [{
+    title: 'Smart Invoice Assistant',
+    description: 'Create and send invoices via chat or voice. Just say what you sold and to whom - we handle the rest.',
+    icon: <Receipt size={24} className="text-blue-600" />
+  }, {
+    title: 'Inventory Automation',
+    description: 'Stock levels update in real-time. Get alerts before you run out and automate reordering.',
+    icon: <Package2 size={24} className="text-green-600" />
+  }, {
+    title: '24/7 Customer Support',
+    description: 'AI handles refunds, tracking, and common questions - giving you more time for your business.',
+    icon: <Headphones size={24} className="text-purple-600" />
+  }];
+
+  const steps = [{
+    title: 'Quick Setup',
+    description: "Answer 3 simple questions about your business and we'll configure everything automatically.",
+    icon: <CheckCircle size={24} className="text-blue-600" />
+  }, {
+    title: 'Connect Your Tools',
+    description: 'We work with your existing tools - Shopify, WhatsApp, Email, and more.',
+    icon: <MessageSquare size={24} className="text-green-600" />
+  }, {
+    title: 'Start Automating',
+    description: 'Simply tell your AI assistant what you need - no complex interfaces or training required.',
+    icon: <TrendingUp size={24} className="text-purple-600" />
+  }];
+
+  const faqs = [{
+    question: 'How does the invoicing work?',
+    answer: "Simply tell your AI assistant what you sold and to whom. For example, 'Invoice John $200 for 2 chairs.' The AI creates and sends the invoice instantly, tracks payment, and updates your inventory."
+  }, {
+    question: 'Do I need to install any software?',
+    answer: "No! Everything works through tools you already use - WhatsApp, email, or SMS. There's also a web dashboard if you prefer that."
+  }, {
+    question: 'How do I receive payments?',
+    answer: 'Payments are processed instantly and automatically deposited to your bank account. You can also keep funds in your account for business expenses.'
+  }, {
+    question: 'What about my existing inventory?',
+    answer: "We'll automatically import your inventory from popular platforms like Shopify, or you can easily add items through chat. Everything stays synced automatically."
+  }];
 
   return (
-    <section className="flex items-center flex-col flex-grow pt-10">
-      <div className="px-5 flex flex-col gap-2 items-center">
-        <h1 className="text-center">
-          <span className="block text-base mb-2">Welcome to</span>
-          <span className="flex items-end gap-4 text-5xl font-bold">
-            <Logo size={48} /> Scaffold-Lisk{" "}
-          </span>
-        </h1>
-        <div className="flex btn btn-md bg-base-100 w-fit justify-center mb-4 items-center space-x-2">
-          <p className="my-2 font-medium">Connected Address:</p>
-          <Address address={connectedAddress} />
+    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
+      {/* Hero Section */}
+      <header className="px-6 lg:px-8 py-24 relative overflow-hidden">
+        <div className="flex justify-end mb-4 max-w-7xl mx-auto">
+          <ConnectButton accountStatus="address" chainStatus="icon" />
         </div>
-        <p className="text-center text-base text-slate-400">
-          Get started by editing{" "}
-          <code className="italic bg-base-100 text-white p-1 rounded-md text-base font-bold max-w-full break-words break-all inline-block">
-            packages/nextjs/app/page.tsx
-          </code>
-        </p>
-        <p className="text-center text-base text-slate-400">
-          Edit your smart contract{" "}
-          <code className="italic bg-base-100 text-white p-1 rounded-md text-base font-bold max-w-full break-words break-all inline-block">
-            YourContract.sol
-          </code>{" "}
-          in{" "}
-          <code className="italic bg-base-100 text-white p-1 rounded-md text-base font-bold max-w-full break-words break-all inline-block">
-            packages/hardhat/contracts
-          </code>
-        </p>
-      </div>
+        <div className="max-w-7xl mx-auto text-center relative z-10">
+          <motion.h1 
+            className="text-5xl lg:text-7xl font-bold text-gray-900 mb-6" 
+            initial={{opacity: 0, y: 20}} 
+            animate={{opacity: 1, y: 0}} 
+            transition={{duration: 0.5}}
+          >
+            Your Business Assistant
+          </motion.h1>
+          <motion.p 
+            className="text-xl lg:text-2xl text-gray-600 mb-8 max-w-3xl mx-auto" 
+            initial={{opacity: 0, y: 20}} 
+            animate={{opacity: 1, y: 0}} 
+            transition={{duration: 0.5, delay: 0.2}}
+          >
+            Run your entire business by chat. Let AI handle invoicing,
+            inventory, and customer service while you focus on growth.
+          </motion.p>
+          <motion.div 
+            className="flex justify-center gap-4" 
+            initial={{opacity: 0, y: 20}} 
+            animate={{opacity: 1, y: 0}} 
+            transition={{duration: 0.5, delay: 0.4}}
+          >
+            <Button onClick={() => window.location.href = '/dashboard'} variant="primary" size="large">
+              Launch BaseFlow
+            </Button>
+            <Button onClick={() => window.open('https://docs.basecommerce.ai')} variant="secondary" size="large">
+              See How It Works
+            </Button>
+          </motion.div>
+        </div>
+      </header>
 
-      <div className="flex-grow bg-base-300 w-full mt-16 px-8 py-12">
-        <div className="flex justify-center items-center gap-12 flex-col sm:flex-row">
-          <div className="flex flex-col bg-base-100 px-10 py-10 text-center items-center max-w-xs rounded-3xl">
-            <BugAntIcon className="h-8 w-8" />
-            <p>
-              Tinker with your smart contract using the{" "}
-              <Link href="/debug" passHref className="link">
-                Debug Contracts
-              </Link>{" "}
-              tab.
-            </p>
-          </div>
-          <div className="flex flex-col bg-base-100 px-10 py-10 text-center items-center max-w-xs rounded-3xl">
-            <MagnifyingGlassIcon className="h-8 w-8" />
-            <p>
-              Explore your local transactions with the{" "}
-              <Link href="/blockexplorer" passHref className="link">
-                Block Explorer
-              </Link>{" "}
-              tab.
-            </p>
+      {/* Stats Section */}
+      <section className="px-6 lg:px-8 py-12 bg-blue-50">
+        <div className="max-w-7xl mx-auto">
+          <div className="grid md:grid-cols-3 gap-8 text-center">
+            <motion.div {...fadeIn}>
+              <div className="flex items-center justify-center mb-2">
+                <Clock size={24} className="text-blue-600" />
+              </div>
+              <p className="text-2xl font-bold text-gray-900">20+ Hours</p>
+              <p className="text-gray-600">Saved Weekly</p>
+            </motion.div>
+            <motion.div {...fadeIn} transition={{delay: 0.2}}>
+              <div className="flex items-center justify-center mb-2">
+                <Shield size={24} className="text-blue-600" />
+              </div>
+              <p className="text-2xl font-bold text-gray-900">100%</p>
+              <p className="text-gray-600">Secure Payments</p>
+            </motion.div>
+            <motion.div {...fadeIn} transition={{delay: 0.4}}>
+              <div className="flex items-center justify-center mb-2">
+                <TrendingUp size={24} className="text-blue-600" />
+              </div>
+              <p className="text-2xl font-bold text-gray-900">30%</p>
+              <p className="text-gray-600">Average Growth</p>
+            </motion.div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+
+      {/* Problems & Solutions Section */}
+      <section className="px-6 lg:px-8 py-24 bg-white">
+        <div className="max-w-7xl mx-auto">
+          <motion.div className="text-center mb-16" {...fadeIn}>
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">
+              From Manual to Automated
+            </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              See how we transform time-consuming tasks into simple
+              conversations
+            </p>
+          </motion.div>
+          <div className="grid md:grid-cols-2 gap-8">
+            {problems.map((problem, index) => (
+              <motion.div 
+                key={problem.title} 
+                className="bg-gray-50 rounded-xl p-6" 
+                {...fadeIn} 
+                transition={{delay: index * 0.1}}
+              >
+                <h3 className="text-xl font-semibold text-gray-900 mb-4">
+                  {problem.title}
+                </h3>
+                <div className="space-y-4">
+                  <div className="flex items-start gap-3">
+                    <div className="w-6 h-6 rounded-full bg-red-100 flex items-center justify-center mt-1">
+                      <Minus size={14} className="text-red-600" />
+                    </div>
+                    <p className="text-gray-600">{problem.before}</p>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="w-6 h-6 rounded-full bg-green-100 flex items-center justify-center mt-1">
+                      <Plus size={14} className="text-green-600" />
+                    </div>
+                    <p className="text-gray-600">{problem.after}</p>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Features Section */}
+      <section className="px-6 lg:px-8 py-24 bg-gray-50">
+        <div className="max-w-7xl mx-auto">
+          <motion.div className="text-center mb-16" {...fadeIn}>
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">
+              Everything You Need, In One Chat
+            </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              Replace your complex tools with simple conversations
+            </p>
+          </motion.div>
+          <div className="grid md:grid-cols-3 gap-8">
+            {features.map((feature, index) => (
+              <motion.div 
+                key={feature.title} 
+                {...fadeIn} 
+                transition={{delay: index * 0.2}}
+              >
+                <FeatureCard {...feature} />
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* How It Works Section */}
+      <section className="px-6 lg:px-8 py-24 bg-white">
+        <div className="max-w-7xl mx-auto">
+          <motion.div className="text-center mb-16" {...fadeIn}>
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">
+              Getting Started Is Easy
+            </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              Be up and running in minutes, not days
+            </p>
+          </motion.div>
+          <div className="grid md:grid-cols-3 gap-8">
+            {steps.map((step, index) => (
+              <motion.div 
+                key={step.title} 
+                className="relative" 
+                {...fadeIn} 
+                transition={{delay: index * 0.2}}
+              >
+                <div className="bg-white rounded-xl p-6 border border-gray-200">
+                  <div className="w-12 h-12 rounded-full bg-blue-50 flex items-center justify-center mb-4">
+                    {step.icon}
+                  </div>
+                  <h3 className="text-xl font-semibold text-gray-900 mb-2">
+                    {step.title}
+                  </h3>
+                  <p className="text-gray-600">{step.description}</p>
+                </div>
+                {index < steps.length - 1 && (
+                  <div className="hidden md:block absolute top-1/2 right-0 transform translate-x-1/2 -translate-y-1/2">
+                    <ArrowRight size={24} className="text-gray-400" />
+                  </div>
+                )}
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Example Usage Section */}
+      <section className="px-6 lg:px-8 py-24 bg-gray-50">
+        <div className="max-w-4xl mx-auto">
+          <motion.div className="text-center mb-12" {...fadeIn}>
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">
+              As Simple As Texting a Friend
+            </h2>
+            <p className="text-xl text-gray-600">
+              No complex interfaces. Just chat naturally.
+            </p>
+          </motion.div>
+          <motion.div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 space-y-6" {...fadeIn}>
+            <div className="space-y-6">
+              <div className="flex items-start gap-4">
+                <div className="text-gray-600">You:</div>
+                <div className="flex-1 text-gray-900">
+                  "Create an invoice for $200 for the chair delivery"
+                </div>
+              </div>
+              <div className="flex items-start gap-4">
+                <div className="text-blue-600">Assistant:</div>
+                <div className="flex-1 text-gray-900">
+                  "Invoice created and sent! I've updated the inventory and
+                  scheduled payment tracking."
+                </div>
+              </div>
+              <div className="flex items-start gap-4">
+                <div className="text-gray-600">You:</div>
+                <div className="flex-1 text-gray-900">
+                  "How many chairs are left in stock?"
+                </div>
+              </div>
+              <div className="flex items-start gap-4">
+                <div className="text-blue-600">Assistant:</div>
+                <div className="flex-1 text-gray-900">
+                  "You have 3 chairs left. Would you like me to prepare a
+                  reorder?"
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* FAQ Section */}
+      <section className="px-6 lg:px-8 py-24 bg-white">
+        <div className="max-w-3xl mx-auto">
+          <motion.div className="text-center mb-12" {...fadeIn}>
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">
+              Common Questions
+            </h2>
+            <p className="text-xl text-gray-600">
+              Everything you need to know about the service
+            </p>
+          </motion.div>
+          <motion.div className="space-y-4" {...fadeIn}>
+            {faqs.map((faq, index) => (
+              <div key={index} className="border border-gray-200 rounded-lg overflow-hidden">
+                <button 
+                  className="w-full px-6 py-4 text-left flex items-center justify-between focus:outline-none" 
+                  onClick={() => setActiveFaq(activeFaq === index ? null : index)}
+                >
+                  <span className="font-medium text-gray-900">
+                    {faq.question}
+                  </span>
+                  {activeFaq === index ? (
+                    <Minus size={20} className="text-gray-500" />
+                  ) : (
+                    <Plus size={20} className="text-gray-500" />
+                  )}
+                </button>
+                {activeFaq === index && (
+                  <div className="px-6 pb-4">
+                    <p className="text-gray-600">{faq.answer}</p>
+                  </div>
+                )}
+              </div>
+            ))}
+          </motion.div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="px-6 lg:px-8 py-24 bg-blue-50">
+        <motion.div className="max-w-4xl mx-auto text-center" {...fadeIn}>
+          <h2 className="text-3xl font-bold text-gray-900 mb-6">
+            Ready to Transform Your Business?
+          </h2>
+          <p className="text-xl text-gray-600 mb-8">
+            Join thousands of merchants who are saving time and growing their
+            business with automated tools.
+          </p>
+          <Button onClick={() => window.location.href = '/dashboard'} variant="primary" size="large">
+            Start Your Free Trial
+          </Button>
+          <p className="mt-4 text-sm text-gray-600">
+            No credit card required. Cancel anytime.
+          </p>
+        </motion.div>
+      </section>
+
+      {/* Scaffold Integration Section */}
+      <section className="px-6 lg:px-8 py-24 bg-white">
+        <div className="max-w-7xl mx-auto">
+          <motion.div className="text-center mb-16" {...fadeIn}>
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">
+              Built on Lisk with Scaffold-Lisk
+            </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              Explore the smart contracts and blockchain transactions powering BaseFlow
+            </p>
+          </motion.div>
+          <div className="flex justify-center items-center gap-12 flex-col sm:flex-row">
+            <div className="flex flex-col bg-white px-10 py-10 text-center items-center max-w-xs rounded-3xl border border-gray-200 shadow-sm">
+              <Bug className="h-8 w-8 text-blue-600 mb-4" />
+              <h3 className="font-semibold mb-2">Debug Contracts</h3>
+              <p className="text-gray-600 mb-4">
+                Interact with BaseFlow smart contracts directly through the debug interface.
+              </p>
+              <Link href="/debug" className="text-blue-600 hover:text-blue-700 font-medium">
+                Open Debug Interface →
+              </Link>
+            </div>
+            <div className="flex flex-col bg-white px-10 py-10 text-center items-center max-w-xs rounded-3xl border border-gray-200 shadow-sm">
+              <Search className="h-8 w-8 text-green-600 mb-4" />
+              <h3 className="font-semibold mb-2">Block Explorer</h3>
+              <p className="text-gray-600 mb-4">
+                Monitor transactions and contract events on the Lisk blockchain.
+              </p>
+              <Link href="/blockexplorer" className="text-blue-600 hover:text-blue-700 font-medium">
+                Open Block Explorer →
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="px-6 lg:px-8 py-12 bg-gray-50">
+        <div className="max-w-7xl mx-auto text-center text-gray-600">
+          <p>© 2024 Base Commerce. All rights reserved.</p>
+        </div>
+      </footer>
+    </div>
   );
 };
 
