@@ -1,5 +1,5 @@
-import React from 'react';
-import { ShoppingCart, Plus, DollarSign } from 'lucide-react';
+import React from "react";
+import { DollarSign, Plus, ShoppingCart } from "lucide-react";
 
 export function SalesAgent() {
   return (
@@ -8,7 +8,7 @@ export function SalesAgent() {
         <h1 className="text-2xl font-bold text-gray-900 mb-2">Sales Agent</h1>
         <p className="text-gray-600">Manage your sales, create invoices, and track payments</p>
       </div>
-      
+
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Quick Actions */}
         <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
@@ -27,7 +27,7 @@ export function SalesAgent() {
             </button>
           </div>
         </div>
-        
+
         {/* Recent Activity */}
         <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
           <h2 className="text-lg font-semibold text-gray-800 mb-4">Recent Activity</h2>
@@ -43,7 +43,7 @@ export function SalesAgent() {
           </div>
         </div>
       </div>
-      
+
       {/* Chat Interface */}
       <div className="mt-6 bg-white rounded-lg shadow-sm border border-gray-200 p-6">
         <h2 className="text-lg font-semibold text-gray-800 mb-4">Chat with Sales Agent</h2>
@@ -55,21 +55,21 @@ export function SalesAgent() {
               </div>
               <div className="flex-1">
                 <p className="text-sm font-medium text-gray-800">Sales Agent</p>
-                <p className="text-sm text-gray-600">Hi! I can help you create invoices, track payments, and manage your sales. What would you like to do?</p>
+                <p className="text-sm text-gray-600">
+                  Hi! I can help you create invoices, track payments, and manage your sales. What would you like to do?
+                </p>
               </div>
             </div>
           </div>
         </div>
         <div className="mt-4">
           <div className="flex gap-2">
-            <input 
-              type="text" 
-              placeholder="Ask me to create an invoice or track a payment..." 
+            <input
+              type="text"
+              placeholder="Ask me to create an invoice or track a payment..."
               className="flex-1 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
-            <button className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700">
-              Send
-            </button>
+            <button className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700">Send</button>
           </div>
         </div>
       </div>

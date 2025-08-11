@@ -107,7 +107,7 @@
 
 /* Fix input and form element styling for BaseFlow light theme */
 .baseflow-dashboard input[type="text"]:not(.bg-base-100):not(.bg-gray-700),
-.baseflow-dashboard input[type="number"]:not(.bg-base-100):not(.bg-gray-700), 
+.baseflow-dashboard input[type="number"]:not(.bg-base-100):not(.bg-gray-700),
 .baseflow-dashboard input[type="email"]:not(.bg-base-100):not(.bg-gray-700),
 .baseflow-dashboard input[type="password"]:not(.bg-base-100):not(.bg-gray-700),
 .baseflow-dashboard input[type="search"]:not(.bg-base-100):not(.bg-gray-700),
@@ -120,7 +120,7 @@
 }
 
 .baseflow-dashboard input[type="text"]:focus:not(.bg-base-100):not(.bg-gray-700),
-.baseflow-dashboard input[type="number"]:focus:not(.bg-base-100):not(.bg-gray-700), 
+.baseflow-dashboard input[type="number"]:focus:not(.bg-base-100):not(.bg-gray-700),
 .baseflow-dashboard input[type="email"]:focus:not(.bg-base-100):not(.bg-gray-700),
 .baseflow-dashboard input[type="password"]:focus:not(.bg-base-100):not(.bg-gray-700),
 .baseflow-dashboard input[type="search"]:focus:not(.bg-base-100):not(.bg-gray-700),
@@ -360,4 +360,3 @@
 .baseflow-dashboard .hover\:bg-gray-700:hover {
   background-color: #374151 !important;
 }
-

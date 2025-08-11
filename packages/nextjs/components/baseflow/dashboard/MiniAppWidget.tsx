@@ -1,4 +1,4 @@
-import { MessageSquare, ExternalLink } from 'lucide-react';
+import { ExternalLink, MessageSquare } from "lucide-react";
 
 export function MiniAppWidget() {
   return (
@@ -23,9 +23,7 @@ export function MiniAppWidget() {
           </div>
         </div>
         <div className="mb-4">
-          <p className="text-sm text-gray-800 mb-2">
-            🚀 Just dropped our new summer collection! Check it out:
-          </p>
+          <p className="text-sm text-gray-800 mb-2">🚀 Just dropped our new summer collection! Check it out:</p>
           <div className="bg-white border border-gray-200 rounded-md p-3">
             <div className="flex items-center justify-between mb-2">
               <p className="font-medium text-gray-800">Summer Collection</p>
@@ -34,9 +32,7 @@ export function MiniAppWidget() {
             <div className="h-24 bg-gray-200 rounded-md mb-2 flex items-center justify-center">
               <div className="text-gray-500 text-sm">Product Image</div>
             </div>
-            <button className="w-full bg-purple-600 text-white py-2 rounded-md hover:bg-purple-700">
-              Buy Now
-            </button>
+            <button className="w-full bg-purple-600 text-white py-2 rounded-md hover:bg-purple-700">Buy Now</button>
           </div>
         </div>
         <div className="flex text-sm text-gray-500">

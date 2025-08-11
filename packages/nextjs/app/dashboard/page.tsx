@@ -1,24 +1,24 @@
 "use client";
 
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import { Sidebar } from "~~/components/baseflow-migrated/Sidebar";
-import { SalesAgent } from "~~/components/baseflow-migrated/agents/SalesAgent";
 import { InventoryAgent } from "~~/components/baseflow-migrated/agents/InventoryAgent";
 import { MarketingAgent } from "~~/components/baseflow-migrated/agents/MarketingAgent";
+import { SalesAgent } from "~~/components/baseflow-migrated/agents/SalesAgent";
 import { MetricsWidget } from "~~/components/baseflow-migrated/widgets/MetricsWidget";
 import { MiniAppWidget } from "~~/components/baseflow-migrated/widgets/MiniAppWidget";
 import { WalletWidget } from "~~/components/baseflow-migrated/widgets/WalletWidget";
 
 export default function Dashboard() {
-  const [activeTab, setActiveTab] = useState('dashboard');
-  
+  const [activeTab, setActiveTab] = useState("dashboard");
+
   const renderContent = () => {
     switch (activeTab) {
-      case 'sales':
+      case "sales":
         return <SalesAgent />;
-      case 'inventory':
+      case "inventory":
         return <InventoryAgent />;
-      case 'marketing':
+      case "marketing":
         return <MarketingAgent />;
       default:
         return (
@@ -34,9 +34,7 @@ export default function Dashboard() {
   return (
     <div className="flex h-full bg-gray-50 baseflow-dashboard" data-theme="baseflow">
       <Sidebar activeTab={activeTab} setActiveTab={setActiveTab} />
-      <main className="flex-1 overflow-y-auto bg-gray-50">
-        {renderContent()}
-      </main>
+      <main className="flex-1 overflow-y-auto bg-gray-50">{renderContent()}</main>
     </div>
   );
 }

@@ -1,24 +1,24 @@
-import React, { useState } from 'react';
-import { Sidebar } from './Sidebar';
-import { Header } from './Header';
-import { SalesAgent } from './agents/SalesAgent';
-import { InventoryAgent } from './agents/InventoryAgent';
-import { MarketingAgent } from './agents/MarketingAgent';
-import { MetricsWidget } from './widgets/MetricsWidget';
-import { MiniAppWidget } from './widgets/MiniAppWidget';
-import { WalletWidget } from './widgets/WalletWidget';
-import { ConnectButton } from '@rainbow-me/rainbowkit';
+import React, { useState } from "react";
+import { Header } from "./Header";
+import { Sidebar } from "./Sidebar";
+import { InventoryAgent } from "./agents/InventoryAgent";
+import { MarketingAgent } from "./agents/MarketingAgent";
+import { SalesAgent } from "./agents/SalesAgent";
+import { MetricsWidget } from "./widgets/MetricsWidget";
+import { MiniAppWidget } from "./widgets/MiniAppWidget";
+import { WalletWidget } from "./widgets/WalletWidget";
+import { ConnectButton } from "@rainbow-me/rainbowkit";
 
 export function Dashboard() {
-  const [activeTab, setActiveTab] = useState('dashboard');
-  
+  const [activeTab, setActiveTab] = useState("dashboard");
+
   const renderContent = () => {
     switch (activeTab) {
-      case 'sales':
+      case "sales":
         return <SalesAgent />;
-      case 'inventory':
+      case "inventory":
         return <InventoryAgent />;
-      case 'marketing':
+      case "marketing":
         return <MarketingAgent />;
       default:
         return (
@@ -41,9 +41,7 @@ export function Dashboard() {
             <ConnectButton accountStatus="address" chainStatus="icon" />
           </div>
         </div>
-        <main className="flex-1 overflow-y-auto bg-gray-50">
-          {renderContent()}
-        </main>
+        <main className="flex-1 overflow-y-auto bg-gray-50">{renderContent()}</main>
       </div>
     </div>
   );

@@ -1,6 +1,6 @@
-import { useState, useCallback } from 'react';
-import { parseUnits } from 'viem';
-import { useScaffoldContractWrite, useScaffoldContractRead } from '~~/hooks/scaffold-eth';
+import { useCallback, useState } from "react";
+import { parseUnits } from "viem";
+import { useScaffoldContractRead, useScaffoldContractWrite } from "~~/hooks/scaffold-eth";
 
 export function useBaseFlow() {
   const [loading, setLoading] = useState(false);
@@ -10,66 +10,65 @@ export function useBaseFlow() {
   const { writeAsync: createInvoiceAsync, isMining: isCreatingInvoice } = useScaffoldContractWrite({
     contractName: "BaseFlowImplementation",
     functionName: "createInvoice",
+    args: [undefined, undefined, undefined, undefined],
   });
 
   const { writeAsync: updateInventoryAsync, isMining: isUpdatingInventory } = useScaffoldContractWrite({
-    contractName: "BaseFlowImplementation", 
-    functionName: "updateInventory",
-  });
-
-  // Read contract state for balance and invoice count
-  const { data: invoiceCounter } = useScaffoldContractRead({
     contractName: "BaseFlowImplementation",
-    functionName: "invoiceCounter",
+    functionName: "updateInventory",
+    args: [undefined, undefined, undefined],
   });
 
-  const handleCreateInvoice = useCallback(async (
-    customer: string,
-    amount: string,
-    dueDate: number,
-    metadata: string
-  ) => {
-    try {
-      setLoading(true);
-      setError(null);
-      
-      // Parse amount as USDC (6 decimals)
-      const result = await createInvoiceAsync({
-        args: [customer as `0x${string}`, parseUnits(amount, 6), BigInt(dueDate), metadata],
-      });
+  // Read contract state - get USDC token address
+  const { data: usdcAddress } = useScaffoldContractRead({
+    contractName: "BaseFlowImplementation",
+    functionName: "usdc",
+  });
 
-      return result;
-    } catch (err) {
-      const errorMessage = err instanceof Error ? err.message : 'Failed to create invoice';
-      setError(errorMessage);
-      throw err;
-    } finally {
-      setLoading(false);
-    }
-  }, [createInvoiceAsync]);
+  const handleCreateInvoice = useCallback(
+    async (customer: string, amount: string, dueDate: number, metadata: string) => {
+      try {
+        setLoading(true);
+        setError(null);
 
-  const handleUpdateInventory = useCallback(async (
-    itemId: string,
-    quantity: number,
-    price: string
-  ) => {
-    try {
-      setLoading(true);
-      setError(null);
-      
-      const result = await updateInventoryAsync({
-        args: [itemId, BigInt(quantity), parseUnits(price, 6)],
-      });
+        // Parse amount as USDC (6 decimals)
+        const result = await createInvoiceAsync({
+          args: [customer as `0x${string}`, parseUnits(amount, 6), BigInt(dueDate), metadata],
+        });
 
-      return result;
-    } catch (err) {
-      const errorMessage = err instanceof Error ? err.message : 'Failed to update inventory';
-      setError(errorMessage);
-      throw err;
-    } finally {
-      setLoading(false);
-    }
-  }, [updateInventoryAsync]);
+        return result;
+      } catch (err) {
+        const errorMessage = err instanceof Error ? err.message : "Failed to create invoice";
+        setError(errorMessage);
+        throw err;
+      } finally {
+        setLoading(false);
+      }
+    },
+    [createInvoiceAsync],
+  );
+
+  const handleUpdateInventory = useCallback(
+    async (itemId: string, quantity: number, price: string) => {
+      try {
+        setLoading(true);
+        setError(null);
+
+        const result = await updateInventoryAsync({
+          args: [itemId, BigInt(quantity), parseUnits(price, 6)],
+        });
+
+        return result;
+      } catch (err) {
+        const errorMessage = err instanceof Error ? err.message : "Failed to update inventory";
+        setError(errorMessage);
+        throw err;
+      } finally {
+        setLoading(false);
+      }
+    },
+    [updateInventoryAsync],
+  );
 
   const isMining = isCreatingInvoice || isUpdatingInventory;
 
@@ -77,15 +76,15 @@ export function useBaseFlow() {
     // Main functions
     createInvoice: handleCreateInvoice,
     updateInventory: handleUpdateInventory,
-    
+
     // State
     loading: loading || isMining,
     error,
     isMining,
-    
+
     // Contract data
-    invoiceCounter,
-    
+    usdcAddress,
+
     // Individual loading states
     isCreatingInvoice,
     isUpdatingInventory,
