@@ -19,6 +19,7 @@ export const TransactionHash = ({ hash }: { hash: string }) => {
           aria-hidden="true"
         />
       ) : (
+        // @ts-ignore
         <CopyToClipboard
           text={hash as string}
           onCopy={() => {

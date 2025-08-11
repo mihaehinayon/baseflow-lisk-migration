@@ -18,6 +18,7 @@ export const TxReceipt = (
             aria-hidden="true"
           />
         ) : (
+          // @ts-ignore
           <CopyToClipboard
             text={displayTxResult(txResult) as string}
             onCopy={() => {
