@@ -1,40 +1,50 @@
 "use client";
 
 import { useState } from "react";
-import Link from "next/link";
-import CopyToClipboard from "react-copy-to-clipboard";
 import { CheckCircleIcon, DocumentDuplicateIcon } from "@heroicons/react/24/outline";
 
-export const TransactionHash = ({ hash }: { hash: string }) => {
+type TransactionHashProps = {
+  hash?: string;
+};
+
+export const TransactionHash = ({ hash }: TransactionHashProps) => {
   const [addressCopied, setAddressCopied] = useState(false);
+
+  const handleCopy = async () => {
+    if (hash) {
+      try {
+        await navigator.clipboard.writeText(hash);
+        setAddressCopied(true);
+        setTimeout(() => {
+          setAddressCopied(false);
+        }, 800);
+      } catch (err) {
+        console.error("Failed to copy:", err);
+      }
+    }
+  };
+
+  if (!hash) {
+    return <p>No transaction hash</p>;
+  }
 
   return (
     <div className="flex items-center">
-      <Link href={`/blockexplorer/transaction/${hash}`}>
-        {hash?.substring(0, 6)}...{hash?.substring(hash.length - 4)}
-      </Link>
-      {addressCopied ? (
-        <CheckCircleIcon
-          className="ml-1.5 text-xl font-normal text-sky-600 h-5 w-5 cursor-pointer"
-          aria-hidden="true"
-        />
-      ) : (
-        // @ts-ignore
-        <CopyToClipboard
-          text={hash as string}
-          onCopy={() => {
-            setAddressCopied(true);
-            setTimeout(() => {
-              setAddressCopied(false);
-            }, 800);
-          }}
-        >
+      <span className="font-mono">{hash}</span>
+      <button
+        onClick={handleCopy}
+        className="ml-1.5 text-xl font-normal group flex items-center transition-all"
+        aria-label="Copy transaction hash"
+      >
+        {addressCopied ? (
+          <CheckCircleIcon className="text-gray-500 h-5 w-5" aria-hidden="true" />
+        ) : (
           <DocumentDuplicateIcon
-            className="ml-1.5 text-xl font-normal text-sky-600 h-5 w-5 cursor-pointer"
+            className="text-gray-500 h-5 w-5 cursor-pointer hover:text-gray-700"
             aria-hidden="true"
           />
-        </CopyToClipboard>
-      )}
+        )}
+      </button>
     </div>
   );
 };
