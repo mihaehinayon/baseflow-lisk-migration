@@ -110,10 +110,18 @@ export const Header = () => {
         </ul>
       </div>
       <div className="navbar-end flex-grow mr-4">
-        <RainbowKitCustomConnectButton />
-        <FaucetButton />
-        <SuperchainFaucetButton />
-        <DappConsoleButton />
+        <div className="flex items-center gap-2">
+          <div className="hidden sm:block">
+            <FaucetButton />
+          </div>
+          <div className="hidden sm:block">
+            <SuperchainFaucetButton />
+          </div>
+          <div className="hidden lg:block">
+            <DappConsoleButton />
+          </div>
+          <RainbowKitCustomConnectButton />
+        </div>
       </div>
     </header>
   );

@@ -129,13 +129,13 @@ const Home: NextPage = () => {
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
       {/* Hero Section */}
-      <header className="px-6 lg:px-8 py-24 relative overflow-hidden">
-        <div className="flex justify-end mb-4 max-w-7xl mx-auto">
+      <header className="px-4 sm:px-6 lg:px-8 py-12 sm:py-24 relative overflow-hidden">
+        <div className="hidden sm:flex justify-end mb-4 max-w-7xl mx-auto">
           <ConnectButton accountStatus="address" chainStatus="icon" />
         </div>
         <div className="max-w-7xl mx-auto text-center relative z-10">
           <motion.h1
-            className="text-5xl lg:text-7xl font-bold text-gray-900 mb-6"
+            className="text-3xl sm:text-5xl lg:text-7xl font-bold text-gray-900 mb-4 sm:mb-6 leading-tight"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
@@ -143,7 +143,7 @@ const Home: NextPage = () => {
             Your Business Assistant
           </motion.h1>
           <motion.p
-            className="text-xl lg:text-2xl text-gray-600 mb-8 max-w-3xl mx-auto"
+            className="text-lg sm:text-xl lg:text-2xl text-gray-600 mb-6 sm:mb-8 max-w-3xl mx-auto px-4 sm:px-0"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
@@ -152,7 +152,7 @@ const Home: NextPage = () => {
             on growth.
           </motion.p>
           <motion.div
-            className="flex justify-center gap-4"
+            className="flex flex-col sm:flex-row justify-center gap-3 sm:gap-4 px-4 sm:px-0"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.4 }}
@@ -164,13 +164,16 @@ const Home: NextPage = () => {
               See How It Works
             </Button>
           </motion.div>
+          <div className="sm:hidden mt-6">
+            <ConnectButton accountStatus="address" chainStatus="icon" />
+          </div>
         </div>
       </header>
 
       {/* Stats Section */}
-      <section className="px-6 lg:px-8 py-12 bg-blue-50">
+      <section className="px-4 sm:px-6 lg:px-8 py-12 bg-blue-50">
         <div className="max-w-7xl mx-auto">
-          <div className="grid md:grid-cols-3 gap-8 text-center">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-8 text-center">
             <motion.div {...fadeIn}>
               <div className="flex items-center justify-center mb-2">
                 <Clock size={24} className="text-blue-600" />
@@ -197,7 +200,7 @@ const Home: NextPage = () => {
       </section>
 
       {/* Problems & Solutions Section */}
-      <section className="px-6 lg:px-8 py-24 bg-white">
+      <section className="px-4 sm:px-6 lg:px-8 py-12 sm:py-24 bg-white">
         <div className="max-w-7xl mx-auto">
           <motion.div className="text-center mb-16" {...fadeIn}>
             <h2 className="text-3xl font-bold text-gray-900 mb-4">From Manual to Automated</h2>
@@ -205,7 +208,7 @@ const Home: NextPage = () => {
               See how we transform time-consuming tasks into simple conversations
             </p>
           </motion.div>
-          <div className="grid md:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8">
             {problems.map((problem, index) => (
               <motion.div
                 key={problem.title}
@@ -235,7 +238,7 @@ const Home: NextPage = () => {
       </section>
 
       {/* Features Section */}
-      <section className="px-6 lg:px-8 py-24 bg-gray-50">
+      <section className="px-4 sm:px-6 lg:px-8 py-12 sm:py-24 bg-gray-50">
         <div className="max-w-7xl mx-auto">
           <motion.div className="text-center mb-16" {...fadeIn}>
             <h2 className="text-3xl font-bold text-gray-900 mb-4">Everything You Need, In One Chat</h2>
@@ -243,7 +246,7 @@ const Home: NextPage = () => {
               Replace your complex tools with simple conversations
             </p>
           </motion.div>
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
             {features.map((feature, index) => (
               <motion.div key={feature.title} {...fadeIn} transition={{ delay: index * 0.2 }}>
                 <FeatureCard {...feature} />
@@ -254,13 +257,13 @@ const Home: NextPage = () => {
       </section>
 
       {/* How It Works Section */}
-      <section className="px-6 lg:px-8 py-24 bg-white">
+      <section className="px-4 sm:px-6 lg:px-8 py-12 sm:py-24 bg-white">
         <div className="max-w-7xl mx-auto">
           <motion.div className="text-center mb-16" {...fadeIn}>
             <h2 className="text-3xl font-bold text-gray-900 mb-4">Getting Started Is Easy</h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">Be up and running in minutes, not days</p>
           </motion.div>
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
             {steps.map((step, index) => (
               <motion.div key={step.title} className="relative" {...fadeIn} transition={{ delay: index * 0.2 }}>
                 <div className="bg-white rounded-xl p-6 border border-gray-200">
@@ -282,7 +285,7 @@ const Home: NextPage = () => {
       </section>
 
       {/* Example Usage Section */}
-      <section className="px-6 lg:px-8 py-24 bg-gray-50">
+      <section className="px-4 sm:px-6 lg:px-8 py-12 sm:py-24 bg-gray-50">
         <div className="max-w-4xl mx-auto">
           <motion.div className="text-center mb-12" {...fadeIn}>
             <h2 className="text-3xl font-bold text-gray-900 mb-4">As Simple As Texting a Friend</h2>
@@ -318,7 +321,7 @@ const Home: NextPage = () => {
       </section>
 
       {/* FAQ Section */}
-      <section className="px-6 lg:px-8 py-24 bg-white">
+      <section className="px-4 sm:px-6 lg:px-8 py-12 sm:py-24 bg-white">
         <div className="max-w-3xl mx-auto">
           <motion.div className="text-center mb-12" {...fadeIn}>
             <h2 className="text-3xl font-bold text-gray-900 mb-4">Common Questions</h2>
@@ -350,7 +353,7 @@ const Home: NextPage = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="px-6 lg:px-8 py-24 bg-blue-50">
+      <section className="px-4 sm:px-6 lg:px-8 py-12 sm:py-24 bg-blue-50">
         <motion.div className="max-w-4xl mx-auto text-center" {...fadeIn}>
           <h2 className="text-3xl font-bold text-gray-900 mb-6">Ready to Transform Your Business?</h2>
           <p className="text-xl text-gray-600 mb-8">
@@ -364,7 +367,7 @@ const Home: NextPage = () => {
       </section>
 
       {/* Scaffold Integration Section */}
-      <section className="px-6 lg:px-8 py-24 bg-white">
+      <section className="px-4 sm:px-6 lg:px-8 py-12 sm:py-24 bg-white">
         <div className="max-w-7xl mx-auto">
           <motion.div className="text-center mb-16" {...fadeIn}>
             <h2 className="text-3xl font-bold text-gray-900 mb-4">Built on Lisk with Scaffold-Lisk</h2>
